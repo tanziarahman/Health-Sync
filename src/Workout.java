@@ -1,41 +1,35 @@
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class Workout {
-    private int workoutDuration; // Duration in seconds
+    private int workoutDuration;
     private Timer timer;
     private int remainingTime;
 
-    // Constructor to initialize workout duration
     public Workout(int durationInSeconds) {
         this.workoutDuration = durationInSeconds;
         this.remainingTime = durationInSeconds;
         this.timer = new Timer();
     }
 
-    // Start the timer
     public void startWorkout() {
-        System.out.println("Workout started!"+"\n" +"Duration: " + formatTime(workoutDuration));
+        System.out.println("Workout started!");
+        System.out.println("Duration: " + formatTime(workoutDuration));
 
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                if (remainingTime > 0) {
-                    System.out.print("\rTime left: " + formatTime(remainingTime));
-                    remainingTime--;
-                } else {
-                    System.out.println("\nWorkout complete!");
-                    timer.cancel();
-                }
-            }
-        };
+        WorkoutTimerTask task = new WorkoutTimerTask(this);
         timer.scheduleAtFixedRate(task, 0, 1000);
     }
 
-    // Format time as MM:SS
+    public void tick() {
+        if (remainingTime > 0) {
+            System.out.print("\rTime left: " + formatTime(remainingTime));
+            remainingTime--;
+        } else {
+            System.out.println("\nWorkout complete!");
+            timer.cancel();
+        }
+    }
+    
     private String formatTime(int totalSeconds) {
-        int minutes = totalSeconds / 60;
-        int seconds = totalSeconds % 60;
-        return String.format("%02d:%02d", minutes, seconds);
+        return TimeFormatter.formatTime(totalSeconds);
     }
 }
