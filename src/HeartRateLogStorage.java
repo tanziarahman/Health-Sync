@@ -9,13 +9,13 @@ public class HeartRateLogStorage{
         heartRateLogs = new ArrayList<>();
     }
 
-    public void addHeartRateLog(LocalDate date, int heartRate) throws DuplicateDateException{
+    public void addHeartRateLog(HeartRateLog heartRateLog) throws DuplicateDateException{
         for (HeartRateLog log : heartRateLogs) {
-            if (log.getDate().equals(date)) {
-                throw new DuplicateDateException("Heart rate already recorded for this date: " + date);
+            if (log.getDate().equals(heartRateLog.getDate())) {
+                throw new DuplicateDateException("Heart rate already recorded for this date: " + heartRateLog.getDate());
             }
         }
-        heartRateLogs.add(new HeartRateLog(date, heartRate));
+        heartRateLogs.add(heartRateLog);
     }
     public List<HeartRateLog> getHeartRateLogs(){
         return heartRateLogs;
