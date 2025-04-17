@@ -30,11 +30,14 @@ public class HeartRateDashboard {
         try{
             heartRateLogStorage.addHeartRateLog(heartRateLog);
             String regard = heartRateLog.checkHeartRateCondition(heartRateLog.getHeartRate());
-            System.out.println(BLUE+regard);
+            System.out.println();
+            System.out.println(regard);
+            System.out.println();
 
             scanner.nextLine();
         }
         catch (DuplicateDateException e){
+            System.out.println();
             System.out.println(e.getMessage());
         }
     }

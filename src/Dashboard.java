@@ -6,6 +6,7 @@ public class Dashboard{
     private static final String GREEN = "\u001B[32m";
     private static final String RED = "\u001B[31m";
     private static final String CYAN = "\u001B[36m";
+    private static final String YELLOW = "\u001B[33m";
     HeartRateDashboard heartRateDashboard = new HeartRateDashboard();
     HealthQuoteGenerator healthQuoteGenerator = new HealthQuoteGenerator();
     Scanner sc = new Scanner(System.in);
@@ -30,32 +31,29 @@ public class Dashboard{
         }
     }
 
-
     private void choiceSelection(String choice){
         switch (choice){
             case "1":
                 calculateBMI();
-                run();
+                promptBack();
                 break;
             case "2":
                 heartRateDashboard.addHeartRate();
-                run();
+                promptBack();
                 break;
             case "3":
                 System.out.print(BLUE+"Enter workout time in min: ");
                 int min = sc.nextInt();
                 Workout workout = new Workout(min*60);
                 workout.startWorkout();
-                run();
                 break;
             case "4":
                 healthQuoteGenerator.showRandomQuote();
                 promptBack();
-                run();
                 break;
             case "5":
                 heartRateDashboard.showHeartRateHistory();
-                run();
+                promptBack();
                 break;
             case "6":
                 System.out.println();
@@ -75,6 +73,7 @@ public class Dashboard{
         double weight = sc.nextDouble();
         System.out.print(CYAN+"Enter your height (metre): ");
         double height = sc.nextDouble();
+        sc.nextLine();
         BMICalculator bmiCalculator = new BMICalculator(weight,height);
         ShowBMI showBMI = new ShowBMI(bmiCalculator);
         showBMI.showBMI();
@@ -82,7 +81,7 @@ public class Dashboard{
 
     private void promptBack() {
         System.out.println();
-        System.out.print(BLUE+"Press enter to continue..."+RESET);
+        System.out.print(YELLOW+"Press enter to continue..."+RESET);
         sc.nextLine();
     }
 }

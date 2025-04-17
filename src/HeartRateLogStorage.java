@@ -9,12 +9,13 @@ public class HeartRateLogStorage{
 
     public HeartRateLogStorage(){
         heartRateLogs = new ArrayList<>();
+        readLogsFromCSV();
     }
 
     public void addHeartRateLog(HeartRateLog heartRateLog) throws DuplicateDateException{
         for (HeartRateLog log : heartRateLogs) {
             if (log.getDate().equals(heartRateLog.getDate())) {
-                throw new DuplicateDateException(RED+"Heart rate already recorded for " + heartRateLog.getDate());
+                throw new DuplicateDateException(RED+"Error: Heart rate already recorded for " + heartRateLog.getDate());
             }
         }
         heartRateLogs.add(heartRateLog);
