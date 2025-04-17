@@ -2,23 +2,22 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class HeartRateDashboard {
+    private static final String BLUE = "\u001B[34m";
     HeartRateLogStorage heartRateLogStorage = new HeartRateLogStorage();
     HeartRateLogPresenter heartRateLogPresenter = new HeartRateLogPresenter();
-    private void addHeartRate() {
+    Scanner scanner = new Scanner(System.in);
+    public void addHeartRate() {
         System.out.print("Enter date (e.g., 2025-04-14): ");
-        Scanner scanner = new Scanner(System.in);
         String dateString = scanner.nextLine();
         LocalDate date = convertLocalDate(dateString);
         System.out.print("Enter heart rate (bpm): ");
         int rate = scanner.nextInt();
-
         HeartRateLog heartRateLog = new HeartRateLog(date,rate);
         ExceptionHandle(heartRateLog);
 
-        scanner.nextLine();
     }
 
-    private void showHeartRateHistory(){
+    public void showHeartRateHistory(){
         heartRateLogPresenter.displayLogs(heartRateLogStorage.getHeartRateLogs());
     }
 
@@ -30,6 +29,10 @@ public class HeartRateDashboard {
     private void ExceptionHandle(HeartRateLog heartRateLog){
         try{
             heartRateLogStorage.addHeartRateLog(heartRateLog);
+            String regard = heartRateLog.checkHeartRateCondition(heartRateLog.getHeartRate());
+            System.out.println(BLUE+regard);
+
+            scanner.nextLine();
         }
         catch (DuplicateDateException e){
             System.out.println(e.getMessage());

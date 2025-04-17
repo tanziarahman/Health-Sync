@@ -5,6 +5,8 @@ import java.util.Random;
 public class HealthQuoteGenerator{
     private List<String> quotes;
     private Random random;
+    private static final String CYAN = "\u001B[36m";
+    private static final String PURPLE = "\u001B[35m";
 
     public HealthQuoteGenerator() {
         quotes = Arrays.asList(
@@ -29,7 +31,7 @@ public class HealthQuoteGenerator{
     }
     public void showRandomQuote() {
         int index = random.nextInt(quotes.size());
-        System.out.println("\n💬 Health Tip of the Day:");
-        System.out.println("\"" + quotes.get(index) + "\"\n");
+        System.out.println(PURPLE+"\n💬 Health Tip of the Day:");
+        System.out.println(CYAN+"\"" + quotes.get(index) + "\"\n");
     }
 }
