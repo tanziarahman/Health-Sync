@@ -31,7 +31,7 @@ public class HealthQuoteGenerator{
     }
     public void showRandomQuote() {
         int index = random.nextInt(quotes.size());
-        System.out.println(PURPLE+"\n💬 Health Tip of the Day:");
+        System.out.println(PURPLE+"\n💬 Health Tip:");
         System.out.println(CYAN+"\"" + quotes.get(index) + "\"\n");
     }
 }
