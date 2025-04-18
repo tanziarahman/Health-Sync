@@ -2,6 +2,8 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
+import java.util.Collections;
 
 public class HeartRateLogStorage{
     private List<HeartRateLog> heartRateLogs;
@@ -19,6 +21,7 @@ public class HeartRateLogStorage{
             }
         }
         heartRateLogs.add(heartRateLog);
+        Collections.sort(heartRateLogs, Comparator.comparing(HeartRateLog::getDate));
         writeLogsToCSV();
     }
     public List<HeartRateLog> getHeartRateLogs(){

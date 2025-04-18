@@ -33,7 +33,7 @@ public class Workout {
             remainingTime--;
         }
         else{
-            System.out.println("\nWorkout complete!");
+            System.out.println(GREEN+"\nWorkout complete!");
             timer.cancel();
             syncLock.notifyCompletion();
         }

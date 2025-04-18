@@ -19,7 +19,7 @@ public class Dashboard{
             System.out.println(GREEN + "[1] Calculate BMI");
             System.out.println("[2] Check Heart Condition");
             System.out.println("[3] Workout Timer");
-            System.out.println("[4] Health Tip");
+            System.out.println("[4] Get Random Health Tip");
             System.out.println("[5] Get Heart Rate History");
             System.out.println("[6] Exit");
             System.out.println();
@@ -45,7 +45,9 @@ public class Dashboard{
                 System.out.print(BLUE+"Enter workout time in min: ");
                 int min = sc.nextInt();
                 Workout workout = new Workout(min*60);
+                sc.nextLine();
                 workout.startWorkout();
+                promptBack();
                 break;
             case "4":
                 healthQuoteGenerator.showRandomQuote();
